@@ -16,3 +16,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "TmComponentKmp"
 include(":shared")
+
+//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
