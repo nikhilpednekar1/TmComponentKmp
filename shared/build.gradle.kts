@@ -97,8 +97,8 @@ publishing {
         maven {
             url = uri("https://mavan.pkg.github.com/nikhilpednekar1/TmComponentKmp")
             credentials {
-                username = /*"nikhilpednekar1"*/project.findProperty("repoUser") as String? ?: ""
-                password = /*"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"*/project.findProperty("repoPassword") as String? ?: ""
+                username = project.findProperty("repoUser") as String? ?: ""
+                password = project.findProperty("repoPassword") as String? ?: ""
             }
         }
     }
