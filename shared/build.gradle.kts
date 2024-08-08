@@ -10,7 +10,7 @@ kotlin {
     androidTarget {
         compilations.all {
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = "11"
             }
         }
     }
@@ -48,48 +48,49 @@ android {
         minSdk = 24
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            from(components["kotlin"])
+
 
             groupId = "com.intellihealth"
             artifactId = "shared-release"
             version = "0.1.0"
             artifact("$buildDir/outputs/aar/shared-release.aar")
 
+            from(components["kotlin"])
 
-//            pom {
-//                name.set("TMComponentKmp")
-//                description.set("A Kotlin Multiplatform library for IntelliHealth TrueMeds")
-//                url.set("http://www.intellihealth.com/shared-release")
-//
-//                licenses {
-//                    license {
-//                        name.set("The Apache License, Version 2.0")
-//                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-//                    }
-//                }
-//
-//                developers {
-//                    developer {
-//                        id.set("intellihealth")
-//                        name.set("IntelliHealth Team")
-//                        email.set("support@intellihealth.com")
-//                    }
-//                }
-//
-//                scm {
-//                    connection.set("scm:git:git://github.com/intellihealth/shared-release.git")
-//                    developerConnection.set("scm:git:ssh://github.com:intellihealth/shared-release.git")
-//                    url.set("http://github.com/intellihealth/shared-release")
-//                }
-//            }
+            pom {
+                name.set("TMComponentKmp")
+                description.set("A Kotlin Multiplatform library for IntelliHealth TrueMeds")
+                url.set("")//landing page for component
+
+                licenses {
+                    license {
+                        name.set("The Apache License, Version 2.0")
+                        url.set("")
+                    }
+                }
+
+                developers {
+                    developer {
+                        id.set("intellihealth")
+                        name.set("IntelliHealth Team")
+                        email.set("")
+                    }
+                }
+
+                scm {
+                    connection.set("scm:git:git://intellihealth.com/shared-release.git")//anonymous public access
+                    developerConnection.set("scm:git:ssh://intellihealth.com/shared-release.git") //write permissions, usually via SSH
+                    url.set("http://intellihealth.com/shared-release")//This is the URL to the SCM web interface where users can view the repository in a web browser
+                }
+            }
         }
     }
 
@@ -97,8 +98,8 @@ publishing {
         maven {
             url = uri("https://mavan.pkg.github.com/nikhilpednekar1/TmComponentKmp")
             credentials {
-                username = project.findProperty("repoUser") as String? ?: ""
-                password = project.findProperty("repoPassword") as String? ?: ""
+                username = "nikhilpednekar1"//project.findProperty("repoUser") as String? ?: ""
+                password = "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"//project.findProperty("repoPassword") as String? ?: ""
             }
         }
     }
