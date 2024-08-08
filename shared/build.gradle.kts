@@ -53,53 +53,54 @@ android {
     }
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = "com.github.nikhilpednekar1"
+                artifactId = "shared"
+                version = "0.0.1"
+                //artifact("$buildDir/outputs/aar/shared-release.aar")
 
+                from(components["kotlin"])
 
-            groupId = "com.intellihealth"
-            artifactId = "shared-release"
-            version = "0.1.0"
-            artifact("$buildDir/outputs/aar/shared-release.aar")
+                pom {
+                    name.set("TMComponentKmp")
+                    description.set("A Kotlin Multiplatform library for IntelliHealth TrueMeds")
+                    url.set("")//landing page for component
 
-            from(components["kotlin"])
-
-            pom {
-                name.set("TMComponentKmp")
-                description.set("A Kotlin Multiplatform library for IntelliHealth TrueMeds")
-                url.set("")//landing page for component
-
-                licenses {
-                    license {
-                        name.set("The Apache License, Version 2.0")
-                        url.set("")
+                    licenses {
+                        license {
+                            name.set("The Apache License, Version 2.0")
+                            url.set("")
+                        }
                     }
-                }
 
-                developers {
-                    developer {
-                        id.set("intellihealth")
-                        name.set("IntelliHealth Team")
-                        email.set("")
+                    developers {
+                        developer {
+                            id.set("intellihealth")
+                            name.set("IntelliHealth Team")
+                            email.set("")
+                        }
                     }
-                }
 
-                scm {
-                    connection.set("scm:git:git://intellihealth.com/shared-release.git")//anonymous public access
-                    developerConnection.set("scm:git:ssh://intellihealth.com/shared-release.git") //write permissions, usually via SSH
-                    url.set("http://intellihealth.com/shared-release")//This is the URL to the SCM web interface where users can view the repository in a web browser
+                    scm {
+                        connection.set("scm:git:git://intellihealth.com/shared-release.git")//anonymous public access
+                        developerConnection.set("scm:git:ssh://intellihealth.com/shared-release.git") //write permissions, usually via SSH
+                        url.set("http://intellihealth.com/shared-release")//This is the URL to the SCM web interface where users can view the repository in a web browser
+                    }
                 }
             }
         }
-    }
 
-    repositories {
-        maven {
-            url = uri("https://mavan.pkg.github.com/nikhilpednekar1/TmComponentKmp")
-            credentials {
-                username = "nikhilpednekar1"//project.findProperty("repoUser") as String? ?: ""
-                password = "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"//project.findProperty("repoPassword") as String? ?: ""
+        repositories {
+            maven {
+                url = uri("https://mavan.pkg.github.com/nikhilpednekar1/TmComponentKmp")
+                credentials {
+                    username = "nikhilpednekar1"//project.findProperty("repoUser") as String? ?: ""
+                    password =
+                        "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"//project.findProperty("repoPassword") as String? ?: ""
+                }
             }
         }
     }
